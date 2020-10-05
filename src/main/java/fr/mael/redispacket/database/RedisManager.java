@@ -1,9 +1,12 @@
 package fr.mael.redispacket.database;
 
 import fr.mael.redispacket.Main;
+import fr.mael.redispacket.api.MainAPI;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+
+import java.util.logging.Level;
 
 public class RedisManager {
     private String host;
@@ -18,7 +21,7 @@ public class RedisManager {
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         jedisPoolConfig.setMaxTotal(12);
         jedisPool = new JedisPool(jedisPoolConfig, host, 6379);
-        Main.getMain().getLogger().info("Redis - Successful connection");
+        MainAPI.getMainAPI().getLogger().log(Level.INFO ,"Redis - Successful connection");
     }
 
     public Jedis getResource() {

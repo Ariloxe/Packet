@@ -1,10 +1,12 @@
 package fr.mael.redispacket.protocol;
 
+import com.google.common.base.Charsets;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
+import fr.mael.redispacket.api.MainAPI;
 import fr.mael.redispacket.test.proxy.BroadcastMessagePacket;
 import fr.mael.redispacket.test.server.CreateServerPacket;
 
@@ -35,11 +37,12 @@ public class PacketManager {
         return packet;
     }
 
-    public synchronized void writePacket(Packet packet) {
+    public synchronized void writePacket(Packet packet, String channels) {
         try {
             ByteArrayDataOutput output = ByteStreams.newDataOutput();
             PacketManager.writePacket(output, packet);
-            //PUBSUB
+
+            MainAPI.getMainAPI().getPubSubAPI().send(channels, new String(output.toByteArray(), Charsets.UTF_8));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
