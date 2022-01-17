@@ -1,12 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<!--
+  ~ Class pom.xml
+  ~
+  ~ @author Maël - B | "LgRmael40"
+  ~
+  ~ Copyright (©) | 2019 - 2020 | AmnezionNetWork. All rights reserved
+  ~  This file is a part of AmnezionNetWork project.
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <groupId>fr.mael</groupId>
-    <artifactId>Redis-Packet</artifactId>
-    <version>0.1</version>
+  <groupId>fr.mael.test</groupId>
+  <artifactId>SpigotAPI</artifactId>
+  <version>5.0.0</version>
+  <name>Packet</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,18 +25,13 @@
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
         <repository>
-            <id>dmulloy2-repo</id>
-            <url>http://repo.dmulloy2.net/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>jcenter</id>
-            <name>jcenter-bintray</name>
-            <url>http://jcenter.bintray.com</url>
+            <id>md_5-snapshots</id>
+            <url>https://repo.md-5.net/content/repositories/snapshots/</url>
         </repository>
     </repositories>
-
-
-    <build>
+    
+    
+	<build>
         <resources>
             <resource>
                 <targetPath>.</targetPath>
@@ -41,7 +42,7 @@
                 </includes>
             </resource>
         </resources>
-        <plugins>
+		<plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -53,46 +54,63 @@
                     <target>8</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.3</version>
-                <configuration>
-                    <createDependencyReducedPom>false</createDependencyReducedPom>
-                    <artifactSet>
-                        <includes>
-                            <include>redis.clients</include>
-                            <include>org.apache.commons:commons-pool2</include>
-                        </includes>
-                    </artifactSet>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<createDependencyReducedPom>false</createDependencyReducedPom>
+					<artifactSet>
+						<includes>
+							<include>redis.clients</include>
+							<include>org.apache.commons:commons-pool2</include>
+						</includes>
+					</artifactSet>
 
-                    <filters>
-                        <filter>
-                            <artifact>*:*</artifact>
-                            <excludes>
-                                <exclude>META-INF/maven/**</exclude>
-                            </excludes>
-                        </filter>
-                    </filters>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
+					<filters>
+                    <filter>
+                        <artifact>*:*</artifact>
+                        <excludes>
+                            <exclude>META-INF/maven/**</exclude>
+                        </excludes>
+                    </filter>
+                </filters>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+    
     <dependencies>
-        <!-- PaperSpigot -->
+
+        <!-- BungeeCord -->
         <dependency>
-            <groupId>org.github.paperspigot</groupId>
-            <artifactId>paperspigot</artifactId>
+            <groupId>net.md-5</groupId>
+            <artifactId>bungeecord-api</artifactId>
+            <version>1.16-R0.2</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Spigot -->
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- BSON -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>bson</artifactId>
+            <version>4.4.1</version>
             <scope>provided</scope>
         </dependency>
 
