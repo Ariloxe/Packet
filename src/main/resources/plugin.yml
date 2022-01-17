@@ -1,0 +1,7 @@
+name: Packet
+authors:
+  - LgRmael40
+  - Nathan
+version: 1.0.0
+main: fr.mael.test.SpigotAPI
+description: Pacets system under Redis.
