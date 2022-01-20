@@ -1,6 +1,6 @@
 package fr.mael.test;
 
-import fr.mael.test.event.IPacketCoreHanlder;
+import fr.mael.test.event.IPacketCoreHandler;
 import fr.mael.test.messaging.protocol.PacketManager;
 import fr.mael.test.redis.Redis;
 import fr.mael.test.redis.pubsub.PubSub;
@@ -30,7 +30,7 @@ public class SpigotAPI extends JavaPlugin {
         pubSub = new PubSub();
 
         packetManager = new PacketManager();
-        packetManager.setHandler(new IPacketCoreHanlder());
+        packetManager.setHandler(new IPacketCoreHandler());
 
     }
 

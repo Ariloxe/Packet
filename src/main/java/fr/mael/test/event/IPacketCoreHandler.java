@@ -12,7 +12,7 @@ import org.bukkit.Bukkit;
  * Copyright (©) | 2019 - 2020 | AmnezionNetWork. All rights reserved
  *  This file is a part of AmnezionNetWork project.
  */
-public class IPacketCoreHanlder extends IPacketHandler {
+public class IPacketCoreHandler extends IPacketHandler {
 
     @Override
     public void handle(PlayerJoinPacket packet) {
